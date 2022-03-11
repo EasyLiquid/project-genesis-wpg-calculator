@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/style.css" type="text/css">
+	</head>
+	<body>
+		<div id="menu1">
+			<button onclick="toggleMenu(1)" class="button_menu">Экономика</button>
+			<button onclick="toggleMenu(2)" class="button_menu">Военное дело</button>
+			<button onclick="toggleMenu(3)" class="button_menu">Наука и технологии</button>
+		</div>
+		
+		<br><div class="block" id="block1">
+			<h2 class="center">*** ЭКОНОМИКА ***</h2>
+			<div id="economic_parameters">
+				<h4>Базовые параметры</h4>
+				<p>Численность населения: <input type="number" onchange="calcProduction()" min="2" step="1" value="2" id="population"></p>
+				<p>Средства труда: <input type="number" onchange="calcProduction()" min="1" step="1" value="1" id="mean_labs"></p>
+				<p>Модификатор технологий: <input type="number" onchange="calcProduction()" min="1.1" step="0.1" value="1.1" id="technologies"></p>
+				<p>Модификатор потребления: <input type="number" onchange="calcProduction()" min="1.01" step="0.01" value="1.01" id="mod_consumption"></p>
+				<p>Ресурсный запас: <input type="number" onchange="calcProduction()" min="1" step="1" value="10000" id="resources"></p>
+				<h4>Производные параметры</h4>
+				<p>Общая стоимость: <input type="number" id="production" readonly></p>
+				<p>Потребительная стоимость: <input type="number"  id="consumption" readonly></p>
+				<p>Резервная стоимость: <input type="number"  id="reserve" readonly></p>
+				<p><button onclick="nextStep()">Следующий ход</button>
+			</div>
+		</div>
+		
+		<div hidden="true" class="block" id="block2">
+			<h2 class="center">*** ВОЕННОЕ ДЕЛО ***</h2>
+			<div id="battle_parameters">
+				<div id="attack_parameters">
+					<h3 class="center">Нападающий отряд</h3>
+					<h4>Базовые параметры</h4>
+					<p>Численность: <input type="number" onchange="updateSquad()" min="1" step="1" id="count1"></p>
+					<p>Сила: <input type="number" onchange="updateSquad()" min="1" step="1" id="strong1"></p>
+					<p>Ловкость: <input type="number" onchange="updateSquad()" min="1" step="1" id="agility1"></p>
+					<p>Скорость: <input type="number" onchange="updateSquad()" min="1" step="1" id="speed1"></p>
+					<p>Меткость: <input type="number" onchange="updateSquad()" min="1" step="1" id="accuracy1"></p>
+					<p>Броня: <input type="number" onchange="updateSquad()" min="0.01" max="0.99" step="0.01" id="armor1"></p>
+					<p>Выносливость: <input type="number" onchange="updateSquad()" min="1" step="1" id="endurance1"></p>
+					<p>Плотность стрельбы: <input type="number" min="0.01" max="1" step="0.01" id="density"></p>
+					<p>Тип боя: <select size="1" onchange="toggleTypeBattle()" id="type_battle">
+						<option value="melee" selected>Ближний</option>
+						<option value="ranged">Дальний</option>
+					</select>
+					
+					<h4>Производные параметры</h4>
+					<div id="melee0">
+						<p>Модификатор атаки: <input type="number" id="modifier1" readonly></p>
+						<p>Шанс уклонения: <input type="number" id="evasion1" readonly></p>
+					</div>
+					
+					<p hidden="true" id="ranged0">Шанс попадания: <input type="number" id="hit1" readonly></p>
+				</div>
+				
+				<div id="defense_parameters">
+					<h3 class="center">Защищающийся отряд</h3>
+					<h4>Базовые параметры</h4>
+					<p>Численность: <input type="number" onchange="updateSquad()" min="1" step="1" id="count2"></p>
+					<p>Сила: <input type="number" onchange="updateSquad()" min="1" step="1" id="strong2"></p>
+					<p>Ловкость: <input type="number" onchange="updateSquad()" min="1" step="1" id="agility2"></p>
+					<p>Скорость: <input type="number" onchange="updateSquad()" min="1" step="1" id="speed2"></p>
+					<p>Меткость: <input type="number" onchange="updateSquad()" min="1" step="1" id="accuracy2"></p>
+					<p>Броня: <input type="number" onchange="updateSquad()" min="0.01" max="0.99" step="0.01" id="armor2"></p>
+					<p>Выносливость: <input type="number" onchange="updateSquad()" min="1" step="1" id="endurance2"></p>
+					
+					<h4>Производные параметры</h4>
+					<div id="melee1">
+						<p>Модификатор атаки: <input type="number" id="modifier2" readonly></p>
+						<p>Шанс уклонения: <input type="number" id="evasion2" readonly></p>
+					</div>
+					
+					<p hidden="true" id="ranged1">Шанс попадания: <input type="number" id="hit2" readonly></p>
+				</div>
+			</div>
+			
+			<br><div id="menu2">
+				<button onclick="randomParams()" class="button_menu">Сгенерировать случайные параметры</button>
+				<button onclick="battle()" class="button_menu">Следующий раунд</button>
+				<button onclick="reverseParams()" class="button_menu">Поменять отряды местами</button>
+			</div>
+			
+			<br><div id="report"></div>
+		</div>
+		
+		<div hidden="true" class="block" id="block3">
+			<h2 class="center">*** НАУКА И ТЕХНОЛОГИИ ***</h2>
+			<div id="science_parameters">
+				<h4>Численность населения</h4>
+				<p>Молодых: <input type="number" onchange="calcScience()" min="2" step="1" value="2" id="youngs"></p>
+				<p>Пожилых: <input type="number" onchange="calcScience()" min="2" step="1" value="2" id="elderlies"></p>
+				<h4>Модификаторы точности знаний</h4>
+				<p>Молодых (от 1.1 до 1.0001): <input type="number" onchange="calcScience()" min="1.0001" max="1.1" step="0.0001" value="1.1" id="knowns_modifier1"></p>
+				<p>Пожилых (от 1.1 до 1.0001): <input type="number" onchange="calcScience()" min="1.0001" max="1.1" step="0.0001" value="1.05" id="knowns_modifier2"></p>
+				<p>Количество знаний: <input type="number" id="science" readonly></p>
+			</div>
+		</div>
+		
+		<script src="/utils.js"></script>
+		<script src="/economic.js"></script>
+		<script src="/battle.js"></script>
+		<script src="/science.js"></script>
+	</body>
+<html>

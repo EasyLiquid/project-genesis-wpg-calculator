@@ -1,0 +1,37 @@
+body {
+	height: 75%;
+}
+input {
+	width: 65px;
+}
+.center {
+	text-align: center;
+}
+#menu1, #menu2 {
+	padding: 10px;
+	border: 1px solid;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.button_menu {
+	width: 25%;
+}
+.block {
+	height: 70%;
+	padding: 10px;
+	border: 1px solid;
+	overflow: scroll;
+	margin: 0 auto;
+}
+#battle_parameters {
+	display: flex;
+	justify-content: space-around;
+}
+#economic_parameters, #attack_parameters, #defense_parameters, #report, #science_parameters {
+	width: 40%;
+	padding: 10px;
+	border: 1px solid;
+	text-align: right;
+	margin: 0 auto;
+}
