@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, button, select, input {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 12px;
+}
+
 body {
 	height: 75%;
 }
@@ -6,13 +13,6 @@ input {
 }
 .center {
 	text-align: center;
-}
-#menu1, #menu2 {
-	padding: 10px;
-	border: 1px solid;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
 }
 .button_menu {
 	width: 25%;
@@ -24,14 +24,9 @@ input {
 	overflow: scroll;
 	margin: 0 auto;
 }
-#battle_parameters {
-	display: flex;
-	justify-content: space-around;
-}
-#economic_parameters, #attack_parameters, #defense_parameters, #report, #science_parameters {
-	width: 40%;
+#assembly_parameters {
+	width: 60%;
 	padding: 10px;
 	border: 1px solid;
-	text-align: right;
 	margin: 0 auto;
 }
