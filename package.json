@@ -13,5 +13,8 @@
     "koa": "^2.13.4",
     "koa-router": "^10.1.1",
     "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "@architect/sandbox": "^5.3.4"
   }
 }
