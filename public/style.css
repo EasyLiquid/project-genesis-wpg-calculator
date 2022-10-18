@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
 p, div, button, select, input {
-	font-family: 'Press Start 2P', cursive;
-	font-size: 12px;
+	font-family: 'Calibri';
+	font-size: 18px;
+	src: url(fonts/calibri/calibri.ttf);
 }
 
 body {
